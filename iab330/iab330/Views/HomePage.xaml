@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iab330.Views.HomePage"
+             Title="Boxed">
+    
+        
+    <ContentPage.Content>
+
+        <Grid ColumnSpacing="10">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="logo.png" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" />
+            <!--<Label Text="Boxed" Font="20" 
+                   HorizontalTextAlignment="Center"
+
+                   Grid.Row="1" Grid.Column="1" 
+                   Grid.ColumnSpan="2"/>-->
+            <Button AutomationId="addRoomButton" 
+                    x:Name= "addRoomButton" 
+                    WidthRequest="160"
+                    FontSize="20"
+                    HeightRequest="160"
+                    Image="room.png"
+                    BackgroundColor="#FFFFFF"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" 
+                    Clicked="addRoomButton_Clicked"
+                    Grid.Row="2" Grid.Column="1"/>
+            <Label Text="Room" Font="20" 
+                   HorizontalTextAlignment="Center"
+
+                   Grid.Row="3" Grid.Column="1" 
+                   />
+            <Label Text="Boxes" Font="20" 
+                   HorizontalTextAlignment="Center"
+
+                   Grid.Row="3" Grid.Column="2" 
+                   />
+            <Button x:Name= "manageBoxesButton" 
+                    
+                    FontSize="20"
+                    WidthRequest="160"
+                    HeightRequest="160"
+                    Image="box_icon.png"
+                    BackgroundColor="#FFFFFF"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" 
+                    Clicked="manageBoxesButton_Clicked"
+                    Grid.Row="2" Grid.Column="2"/>
+            <Button x:Name= "searchButton" 
+                    WidthRequest="160"
+                    Image="search.png"
+                    BackgroundColor="#FFFFFF"
+                    FontSize="20"
+                    HeightRequest="160"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="searchButton_Clicked"
+                    Grid.Row="4" Grid.Column="1"/>
+            <Button x:Name= "helpButton" 
+                    WidthRequest="160"
+                    Image="help.png"
+                    FontSize="20"
+                    BackgroundColor="#FFFFFF"
+                    HeightRequest="160"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="helpButton_Clicked"
+                    Grid.Row="4" Grid.Column="2"/>
+            <Label Text="Itemes" Font="20" 
+                   HorizontalTextAlignment="Center"
+
+                   Grid.Row="5" Grid.Column="1" 
+                   />
+            <Label Text="Instruction" Font="20" 
+                   HorizontalTextAlignment="Center"
+
+                   Grid.Row="5" Grid.Column="2" 
+                   />
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

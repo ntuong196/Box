@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iab330.Views.ManageBoxScreen"
+             x:Name="ManageBoxPage"
+             Title="Manage Boxes">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="CenterAndExpand"
+                     WidthRequest="300">
+            <Label Text="Add new boxes here:" />
+            <Entry x:Name="boxName"
+                   Placeholder="Enter Box Name Here" 
+                   Text="{Binding Path=BindingContext.NewBoxName, Source={x:Reference Name=boxList}, Mode=TwoWay}"/>
+            <Label Text="Room Type:" />
+            <Picker x:Name="roomType" Title="Select Room Type" ItemsSource="{Binding Rooms}"  SelectedItem="{Binding Path=BindingContext.SelectedRoom, Source={x:Reference Name=boxList}, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}">
+                <Picker.Items>
+                </Picker.Items>
+            </Picker>
+
+            <Button x:Name="createBox" 
+                    WidthRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    
+                    Text="Create Box"
+                    Command="{Binding Path=BindingContext.CreateBoxCommand, Source={x:Reference Name=boxList}}"/>
+            <Label Text="{Binding Path=BindingContext.Error, Source={x:Reference Name=boxList}}"/>
+            <ListView x:Name="boxList" ItemsSource="{Binding Boxes}" ItemSelected="boxList_ItemSelected" SelectedItem="{Binding BoxToBeEdited, Mode=OneWayToSource}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name, StringFormat='Name: &#10;{0}'}"
+                                       Grid.Row="0"
+                                       Grid.Column="0"/>
+                                <Label Text="{Binding Room.Name, StringFormat='Room: &#10;{0}'}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"/>
+                                <Button x:Name="removeBox" 
+                                        Image="bin.png"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HeightRequest="50"
+                                        WidthRequest="75"
+                                        BackgroundColor="White"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center"
+                                        Command="{Binding Path=BindingContext.RemoveBoxCommand, Source={x:Reference Name=boxList}}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iab330.Views.AddRoom"
+             x:Name="AddRoomPage"
+             Title="Add New Room">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry AutomationId="roomName"
+                   x:Name="roomName" 
+                   Placeholder="Room Name" 
+                   WidthRequest="300"
+                   HeightRequest="50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" 
+                   Text="{Binding NewRoomName, Mode=TwoWay}"/>
+            <Button AutomationId="addRoomButton" 
+                    x:Name="addRoomButton" 
+                    Text="Add" 
+                    WidthRequest="300"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" 
+                    Command="{Binding AddRoomCommand}"/>
+            <Label Text="{Binding Error}"></Label>
+            <ListView AutomationId="roomsListView"
+                      x:Name="roomsListView" 
+                      WidthRequest="300"
+                      HorizontalOptions="Center"
+                      VerticalOptions="CenterAndExpand" 
+                      ItemsSource="{Binding Path=Rooms}" 
+                      ItemSelected="roomsListView_ItemSelected"  
+                      SelectedItem="{Binding RoomToBeEdited, Mode=OneWayToSource}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       FontSize="Medium"/>
+                                <Button AutomationId="removeRoomButton"
+                                        x:Name="removeRoomButton" 
+                                        Grid.Row="0" 
+                                        Grid.Column="1"
+                                        Image="bin.png"
+                                        WidthRequest="75"
+                                        HeightRequest="75"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" 
+                                        BackgroundColor="White"
+                                        Command="{Binding Path=BindingContext.RemoveRoomCommand, Source={x:Reference Name=AddRoomPage}}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
